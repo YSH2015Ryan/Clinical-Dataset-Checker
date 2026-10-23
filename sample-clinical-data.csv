@@ -1,0 +1,22 @@
+participant_id,age,gender,blood_pressure_systolic,blood_pressure_diastolic,glucose_mg_dl,hdl_cholesterol,ldl_cholesterol,status,date_visit,notes
+P001,45,M,120,80,95,55,100,complete,2024-01-15,
+P002,52,F,140,90,145,40,150,complete,2024-01-16,
+P003,48,M,130,85,110,50,120,complete,2024-01-17,
+P004,55,F,135,88,130,45,140,incomplete,2024-01-18,
+P005,61,M,145,95,155,35,160,complete,2024-01-19,
+P006,49,F,125,82,100,58,95,complete,2024-01-20,
+P001,46,M,118,79,98,56,102,follow-up,2024-02-15,improved
+P002,52,F,138,88,142,42,148,follow-up,2024-02-16,
+P003,48,M,128,84,108,51,118,follow-up,2024-02-17,stable
+P007,50,F,130,86,125,48,130,complete,2024-01-21,
+P008,58,M,150,96,165,33,175,complete,2024-01-22,high values
+P009,44,F,122,80,92,60,90,complete,2024-01-23,
+P010,67,M,155,100,170,30,180,complete,2024-01-24,
+P010,67,M,155,100,170,30,180,complete,2024-01-24,
+P011,41,F,115,75,85,65,80,complete,2024-01-25,
+P012,70,M,160,105,180,25,200,complete,2024-01-26,
+P013,46,F,128,83,105,52,110,complete,2024-01-27,
+P014,53,M,142,92,150,38,155,incomplete,2024-01-28,missing glucose
+P015,49,F,,,105,48,120,complete,2024-01-29,bp not recorded
+P016,62,M,148,94,160,36,165,complete,2024-01-30,
+P017,44,M,119,78,88,62,85,complete,2024-01-31,
