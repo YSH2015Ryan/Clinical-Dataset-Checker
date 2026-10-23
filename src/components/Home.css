@@ -1,0 +1,142 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background: white;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.header-left h1 {
+  font-size: 24px;
+  color: var(--primary-color);
+}
+
+.header-right {
+  display: flex;
+  gap: 16px;
+}
+
+.lang-btn {
+  padding: 8px 16px;
+  background: var(--secondary-color);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.lang-btn:hover {
+  background: #e0e0e0;
+}
+
+.home-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.hero h2 {
+  font-size: 32px;
+  margin-bottom: 16px;
+  color: var(--text-color);
+}
+
+.hero p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #666;
+  max-width: 700px;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.features {
+  width: 100%;
+  background: white;
+  padding: 32px;
+  border-radius: 8px;
+  margin-bottom: 32px;
+  border: 1px solid var(--border-color);
+}
+
+.features h3 {
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+.features ul {
+  list-style: none;
+}
+
+.features li {
+  padding: 8px 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.info-section {
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+.info-box {
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+  border-left: 4px solid var(--info-color);
+}
+
+.info-box h4 {
+  margin-bottom: 12px;
+  color: var(--primary-color);
+}
+
+.info-box p {
+  margin-bottom: 8px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #666;
+}
+
+.app-footer {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: auto;
+  padding: 24px;
+  border-top: 1px solid var(--border-color);
+  background: white;
+}
+
+.app-footer a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.app-footer a:hover {
+  text-decoration: underline;
+}

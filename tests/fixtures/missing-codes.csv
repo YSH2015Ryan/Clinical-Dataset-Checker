@@ -1,0 +1,11 @@
+participant_id,glucose,biomarker,notes,zero_valid
+P001,95,1.25,normal,0
+P002,NA,,not measured,0
+P003,110,N/A,lab closed,1
+P004,130,1.42,unknown,2
+P005,unknown,1.38,patient fasting,0
+P006,100,-,retest needed,3
+P007,未查,1.50,未测,0
+P008,,1.47,,1
+P009,92,0,zero is valid here,0
+P010,105,1.33,ok,2

@@ -1,0 +1,257 @@
+{
+  "common": {
+    "app_title": "临床数据集检查器",
+    "app_description": "临床研究数据质量预检工具",
+    "language": "语言",
+    "english": "English",
+    "chinese": "简体中文",
+    "loading": "加载中...",
+    "error": "错误",
+    "success": "成功",
+    "warning": "警告",
+    "blocker": "阻塞",
+    "info": "信息",
+    "home": "首页",
+    "import": "导入",
+    "preview": "预览",
+    "results": "结果",
+    "export": "导出",
+    "about": "关于",
+    "privacy": "隐私",
+    "version": "版本",
+    "close": "关闭",
+    "back": "返回",
+    "next": "下一步",
+    "cancel": "取消",
+    "confirm": "确认",
+    "download": "下载",
+    "copy": "复制",
+    "copied": "已复制!",
+    "reset": "重置"
+  },
+  "home": {
+    "title": "临床数据集检查器",
+    "subtitle": "在统计分析前检查您的数据质量",
+    "description": "此工具帮助您在开始统计分析前，识别 CSV 或 XLSX 文件中的数据质量问题。所有处理都在您的浏览器中本地进行 — 数据永远不会上传到服务器。",
+    "try_sample": "尝试示例数据",
+    "check_file": "检查我的文件",
+    "features": {
+      "title": "功能特性",
+      "local": "本地处理：所有分析都在浏览器中进行",
+      "privacy": "隐私优先：您的数据永远不会离开您的设备",
+      "formats": "多种格式：支持 CSV 和 XLSX",
+      "rules": "20+ 规则：全面的数据质量检查",
+      "export": "导出结果：支持 HTML、JSON 和 CSV 报告"
+    },
+    "supported_formats": "支持格式：CSV（逗号、分号、制表符分隔），XLSX（单个工作表）",
+    "limitations": "限制：此工具仅检查数据结构和质量。它不提供临床解释、自动修复或监管合规性验证。",
+    "get_started": "开始使用"
+  },
+  "import": {
+    "title": "导入数据",
+    "drag_drop": "将 CSV 或 XLSX 文件拖放到此处",
+    "or_click": "或点击选择文件",
+    "file_size_limit": "最大文件大小：25 MB",
+    "row_limit": "最多：100,000 行",
+    "column_limit": "最多：500 列",
+    "header_row": "标题行",
+    "header_row_help": "哪一行包含列标题？",
+    "id_column": "ID 列（可选）",
+    "id_column_help": "选择唯一标识参与者的列（可选）",
+    "study_design": "研究设计",
+    "longitudinal": "这是纵向数据吗？（一个参与者，多行记录）",
+    "analysis_unit": "分析单位",
+    "analysis_unit_help": "描述分析单位（例如，按参与者、按样本）",
+    "missing_markers": "缺失值标记",
+    "missing_markers_help": "自定义缺失值代码（逗号分隔，例如 NA, N/A, unknown）",
+    "separator": "分隔符",
+    "separator_auto": "自动检测（{{separator}}）",
+    "auto_detect": "自动检测：{{separator}}",
+    "separator_help": "选择字段分隔符",
+    "sheet": "工作表",
+    "none": "（无）",
+    "date_columns": "日期列",
+    "date_columns_help": "选择应包含日期的列（预期为 ISO 格式 YYYY-MM-DD）",
+    "start_date_column": "开始日期列（可选）",
+    "end_date_column": "结束日期列（可选）",
+    "formula_warning": "{{count}} 个单元格包含公式；仅读取了缓存值，可能已过期。",
+    "parse_warnings": "CSV 解析器报告了 {{count}} 个解析警告。",
+    "preview": "预览",
+    "confirm_import": "预览数据",
+    "loading": "处理文件中..."
+  },
+  "preview": {
+    "title": "数据预览",
+    "file_name": "文件：{{name}}",
+    "file_size": "大小：{{size}} 字节",
+    "total_rows": "总行数：{{rows}}",
+    "total_columns": "总列数：{{cols}}",
+    "preview_rows": "预览（前 20 行）：",
+    "parsing_warnings": "解析警告：",
+    "no_warnings": "无警告",
+    "start_check": "开始质量检查",
+    "back_to_import": "返回导入"
+  },
+  "results": {
+    "title": "质量检查结果",
+    "no_issues": "未发现问题! ✓",
+    "issues_summary": "发现 {{count}} 个问题",
+    "blockers": "阻塞性问题",
+    "warnings": "警告",
+    "info": "信息",
+    "filter": "按严重程度筛选",
+    "filter_all": "全部",
+    "sort": "排序方式",
+    "columns": "列",
+    "affected_rows": "受影响的行",
+    "sample_rows": "示例数据行（从 1 开始）",
+    "action": "建议操作",
+    "issues_label": "问题数",
+    "blocker_notice": "发现阻塞级问题。这表示当前配置下数据无法被可靠解释 — 导出前请先检查。",
+    "to_export": "前往导出",
+    "details": "详情",
+    "examples": "示例行：",
+    "view_details": "查看详情",
+    "hide_details": "隐藏详情",
+    "data_summary": {
+      "title": "数据摘要",
+      "total_rows": "总行数",
+      "total_columns": "总列数",
+      "missing_cells": "缺失单元格",
+      "total_cells": "总单元格",
+      "missing_rate": "缺失率"
+    },
+    "rules_applied": "应用规则：{{count}}"
+  },
+  "export": {
+    "title": "导出结果",
+    "format": "导出格式",
+    "html": "HTML 报告",
+    "json": "JSON 数据",
+    "csv": "问题（CSV）",
+    "include_samples": "在报告中包含示例数据",
+    "blocker_notice": "存在阻塞级问题。导出的报告将标记为包含未解决的阻塞问题。",
+    "blocker_ack": "我已检查阻塞问题，仍要导出。",
+    "download": "下载",
+    "downloading": "下载中...",
+    "success": "报告下载成功"
+  },
+  "about": {
+    "title": "关于",
+    "version": "版本：{{version}}",
+    "description": "临床数据集检查器是一个本地优先的工具，用于预检查临床研究数据集中的数据质量。",
+    "development": "开发：{{year}} 临床研究团队",
+    "license": "许可证：MIT",
+    "repository": "代码仓库：GitHub",
+    "feedback": "反馈：报告问题或建议",
+    "limitations": {
+      "title": "工具限制",
+      "not_clinical_tool": "这不是临床决策支持工具",
+      "no_diagnosis": "不提供诊断或预后预测",
+      "no_repair": "不自动修复数据",
+      "no_compliance": "不验证监管合规性",
+      "data_checks": "仅执行结构和质量检查"
+    }
+  },
+  "privacy": {
+    "title": "隐私与数据处理",
+    "overview": "所有数据处理都在您的浏览器中进行。数据永远不会发送到外部服务器。",
+    "local_only": "本地处理",
+    "local_only_desc": "所有文件解析和分析完全在您的设备上进行",
+    "no_uploads": "无上传",
+    "no_uploads_desc": "我们不会将文件、数据值或分析结果传输到任何服务器",
+    "no_tracking": "无追踪",
+    "no_tracking_desc": "无分析、会话回放、Cookie 或第三方工具",
+    "no_accounts": "无账户",
+    "no_accounts_desc": "无需注册、登录或用户账户",
+    "verify": "您可以使用浏览器开发者工具（网络标签页）验证这一点",
+    "exports": "导出报告时，文件直接下载到您的设备"
+  },
+  "check": {
+    "header_empty": {
+      "title": "空列标题",
+      "description": "一列或多列的标题名称为空",
+      "action": "为空列提供名称或确认是否应包含它们"
+    },
+    "header_duplicate": {
+      "title": "重复的列名",
+      "description": "两列或多列的名称相同（规范化后）",
+      "action": "重命名重复的列使其唯一"
+    },
+    "row_empty": {
+      "title": "空白行",
+      "description": "所有单元格都为空的完整行",
+      "action": "验证这些行是否应该移除或它们是否代表缺失的数据条目"
+    },
+    "column_empty": {
+      "title": "空列",
+      "description": "所有单元格都为空的列",
+      "action": "检查是否应该移除这些列"
+    },
+    "missing_values": {
+      "title": "缺失值",
+      "description": "标记为缺失的单元格（空、null 或您指定的缺失标记）",
+      "action": "查看缺失数据的模式和比例；考虑分析是否可以继续进行"
+    },
+    "exact_duplicate_rows": {
+      "title": "重复行",
+      "description": "相同的记录出现多次",
+      "action": "验证重复是否为预期的（例如重复测量）或数据输入错误"
+    },
+    "duplicate_id": {
+      "title": "重复 ID",
+      "description": "ID 值出现多次",
+      "action": "确认这是否为预期的（纵向数据）或每个 ID 应该是唯一的"
+    },
+    "mixed_types": {
+      "title": "混合数据类型",
+      "description": "单列包含数字、文本、日期或布尔值的混合",
+      "action": "查看该列；您可能需要在分析前标准化类型"
+    },
+    "numeric_parse_ambiguity": {
+      "title": "数字格式歧义",
+      "description": "数字使用非标准分隔符（逗号、句号、空格）",
+      "action": "澄清逗号是表示千位分隔符还是小数点"
+    },
+    "invalid_date_candidate": {
+      "title": "无效日期格式",
+      "description": "单元格无法解析为日期",
+      "action": "查看日期格式；考虑标准化为 ISO 8601（YYYY-MM-DD）"
+    },
+    "date_order": {
+      "title": "日期顺序问题",
+      "description": "结束日期早于开始日期",
+      "action": "验证日期；这可能对回顾性研究有效"
+    },
+    "constant_column": {
+      "title": "常数列",
+      "description": "列仅包含一个唯一值",
+      "action": "考虑该列是否对分析有必要"
+    },
+    "high_cardinality_category": {
+      "title": "高基数类别",
+      "description": "文本列的唯一值异常多（>50% 唯一）",
+      "action": "验证这不是 ID 或自由文本字段；查看标准化需求"
+    },
+    "outlier_iqr_flag": {
+      "title": "潜在异常值（IQR）",
+      "description": "数值被 IQR 方法标记为异常值（四分位数的 ±1.5*IQR）",
+      "action": "查看异常值；验证它们是有效的测量值，而不是数据输入错误"
+    },
+    "possible_outcome_leakage": {
+      "title": "可能的结果泄漏",
+      "description": "列名表明它可能包含结果或反应信息",
+      "action": "验证该列不是意外使用了结果变量中的信息"
+    }
+  },
+  "errors": {
+    "file_unsupported": "此文件格式不支持。请使用 CSV 或 XLSX。",
+    "file_too_large": "文件超过 25 MB 限制。请选择较小的文件。",
+    "file_empty": "此文件不包含数据。",
+    "row_column_limit": "数据超过限制：100,000 行或 500 列。",
+    "header_duplicate_error": "发现重复列名。继续前请重命名它们。",
+    "parse_error": "无法读取此文件。请检查它是否为有效的 CSV 或 XLSX 文件。",
+    "invalid_header_row": "无效的标题行索引。请选择文件中存在的行。",
+    "unknown_error": "发生意外错误。请刷新并重试。"
+  }
+}

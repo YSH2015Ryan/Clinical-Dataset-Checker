@@ -1,0 +1,257 @@
+{
+  "common": {
+    "app_title": "Clinical Dataset Checker",
+    "app_description": "Clinical research data quality pre-check tool",
+    "language": "Language",
+    "english": "English",
+    "chinese": "简体中文",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "warning": "Warning",
+    "blocker": "Blocker",
+    "info": "Information",
+    "home": "Home",
+    "import": "Import",
+    "preview": "Preview",
+    "results": "Results",
+    "export": "Export",
+    "about": "About",
+    "privacy": "Privacy",
+    "version": "Version",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "download": "Download",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "reset": "Reset"
+  },
+  "home": {
+    "title": "Clinical Dataset Checker",
+    "subtitle": "Check your data quality before statistical analysis",
+    "description": "This tool helps you identify data quality issues in your CSV or XLSX files before you begin statistical analysis. All processing happens locally in your browser — no data is ever uploaded to servers.",
+    "try_sample": "Try Sample Dataset",
+    "check_file": "Check My File",
+    "features": {
+      "title": "Features",
+      "local": "Local Processing: All analysis happens in your browser",
+      "privacy": "Privacy First: No data leaves your device",
+      "formats": "Multiple Formats: CSV and XLSX support",
+      "rules": "20+ Rules: Comprehensive data quality checks",
+      "export": "Export Results: HTML, JSON, and CSV reports"
+    },
+    "supported_formats": "Supported Formats: CSV (comma, semicolon, tab-separated), XLSX (single sheet)",
+    "limitations": "Limitations: This tool checks data structure and quality only. It does not provide clinical interpretation, automatic repair, or verify regulatory compliance.",
+    "get_started": "Get Started"
+  },
+  "import": {
+    "title": "Import Data",
+    "drag_drop": "Drag and drop your CSV or XLSX file here",
+    "or_click": "or click to select",
+    "file_size_limit": "Maximum file size: 25 MB",
+    "row_limit": "Maximum: 100,000 rows",
+    "column_limit": "Maximum: 500 columns",
+    "header_row": "Header Row",
+    "header_row_help": "Which row contains your column headers?",
+    "id_column": "ID Column (Optional)",
+    "id_column_help": "Select the column that uniquely identifies participants (optional)",
+    "study_design": "Study Design",
+    "longitudinal": "Is this longitudinal data? (one participant, multiple rows)",
+    "analysis_unit": "Analysis Unit",
+    "analysis_unit_help": "Describe the unit of analysis (e.g., 'per-participant', 'per-sample')",
+    "missing_markers": "Missing Data Markers",
+    "missing_markers_help": "Custom codes for missing values (comma-separated, e.g., NA, N/A, unknown)",
+    "separator": "Separator",
+    "separator_auto": "Auto-detected ({{separator}})",
+    "auto_detect": "Auto-detected: {{separator}}",
+    "separator_help": "Choose the field separator",
+    "sheet": "Worksheet",
+    "none": "(None)",
+    "date_columns": "Date Columns",
+    "date_columns_help": "Select columns that should contain dates (ISO format YYYY-MM-DD expected)",
+    "start_date_column": "Start Date Column (optional)",
+    "end_date_column": "End Date Column (optional)",
+    "formula_warning": "{{count}} cell(s) contain formulas; only cached values were read and may be stale.",
+    "parse_warnings": "{{count}} parsing warning(s) reported by the CSV parser.",
+    "preview": "Preview",
+    "confirm_import": "Preview Data",
+    "loading": "Processing file..."
+  },
+  "preview": {
+    "title": "Data Preview",
+    "file_name": "File: {{name}}",
+    "file_size": "Size: {{size}} bytes",
+    "total_rows": "Total Rows: {{rows}}",
+    "total_columns": "Total Columns: {{cols}}",
+    "preview_rows": "Preview (first 20 rows):",
+    "parsing_warnings": "Parsing Warnings:",
+    "no_warnings": "No warnings",
+    "start_check": "Start Quality Check",
+    "back_to_import": "Back to Import"
+  },
+  "results": {
+    "title": "Quality Check Results",
+    "no_issues": "No issues found! ✓",
+    "issues_summary": "Found {{count}} issue(s)",
+    "blockers": "Blockers",
+    "warnings": "Warnings",
+    "info": "Information",
+    "filter": "Filter by severity",
+    "filter_all": "All",
+    "sort": "Sort by",
+    "columns": "Columns",
+    "affected_rows": "Affected Rows",
+    "sample_rows": "Sample data rows (1-based)",
+    "action": "Suggested action",
+    "issues_label": "Issues",
+    "blocker_notice": "Blocker-level issues were found. They indicate the data cannot be reliably interpreted with the current configuration — review them before exporting.",
+    "to_export": "Go to Export",
+    "details": "Details",
+    "examples": "Example rows:",
+    "view_details": "View Details",
+    "hide_details": "Hide Details",
+    "data_summary": {
+      "title": "Data Summary",
+      "total_rows": "Total Rows",
+      "total_columns": "Total Columns",
+      "missing_cells": "Missing Cells",
+      "total_cells": "Total Cells",
+      "missing_rate": "Missing Rate"
+    },
+    "rules_applied": "Rules Applied: {{count}}"
+  },
+  "export": {
+    "title": "Export Results",
+    "format": "Export Format",
+    "html": "HTML Report",
+    "json": "JSON Data",
+    "csv": "Issues (CSV)",
+    "include_samples": "Include sample data in report",
+    "blocker_notice": "Blocker-level issues are present. The report will be marked as containing unresolved blockers.",
+    "blocker_ack": "I have reviewed the blocker issues and want to export anyway.",
+    "download": "Download",
+    "downloading": "Downloading...",
+    "success": "Report downloaded successfully"
+  },
+  "about": {
+    "title": "About",
+    "version": "Version: {{version}}",
+    "description": "Clinical Dataset Checker is a local-first tool for pre-checking data quality in clinical research datasets.",
+    "development": "Development: {{year}} Clinical Research Team",
+    "license": "License: MIT",
+    "repository": "Repository: GitHub",
+    "feedback": "Feedback: Report issues or suggestions",
+    "limitations": {
+      "title": "Tool Limitations",
+      "not_clinical_tool": "This is not a clinical decision-support tool",
+      "no_diagnosis": "Does not provide diagnosis or prognosis",
+      "no_repair": "Does not automatically repair data",
+      "no_compliance": "Does not verify regulatory compliance",
+      "data_checks": "Performs structural and quality checks only"
+    }
+  },
+  "privacy": {
+    "title": "Privacy & Data Handling",
+    "overview": "All data processing happens in your browser. No data is ever sent to external servers.",
+    "local_only": "Local Processing",
+    "local_only_desc": "All file parsing and analysis happens entirely on your device",
+    "no_uploads": "No Uploads",
+    "no_uploads_desc": "We do not transmit files, data values, or analysis results to any server",
+    "no_tracking": "No Tracking",
+    "no_tracking_desc": "No analytics, session replay, cookies, or third-party tools",
+    "no_accounts": "No Accounts",
+    "no_accounts_desc": "No registration, login, or user accounts required",
+    "verify": "You can verify this using your browser's Developer Tools (Network tab)",
+    "exports": "When you export reports, files download directly to your device"
+  },
+  "check": {
+    "header_empty": {
+      "title": "Empty Column Header",
+      "description": "One or more columns have empty header names",
+      "action": "Provide names for empty columns or confirm they should be included"
+    },
+    "header_duplicate": {
+      "title": "Duplicate Column Names",
+      "description": "Two or more columns have identical names (after normalization)",
+      "action": "Rename duplicate columns to make them unique"
+    },
+    "row_empty": {
+      "title": "Empty Rows",
+      "description": "Complete rows with all cells empty",
+      "action": "Verify whether these rows should be removed or if they represent missing data entries"
+    },
+    "column_empty": {
+      "title": "Empty Columns",
+      "description": "Columns with all cells empty",
+      "action": "Review if these columns should be removed"
+    },
+    "missing_values": {
+      "title": "Missing Values",
+      "description": "Cells marked as missing (empty, null, or your specified missing markers)",
+      "action": "Review the pattern and proportion of missing data; consider whether analysis can proceed"
+    },
+    "exact_duplicate_rows": {
+      "title": "Duplicate Rows",
+      "description": "Identical records appearing more than once",
+      "action": "Verify if duplicates are intentional (e.g., replicates) or data entry errors"
+    },
+    "duplicate_id": {
+      "title": "Duplicate IDs",
+      "description": "ID values appearing more than once",
+      "action": "Confirm if this is expected (longitudinal data) or if each ID should be unique"
+    },
+    "mixed_types": {
+      "title": "Mixed Data Types",
+      "description": "Single column contains mix of numbers, text, dates, or boolean values",
+      "action": "Review the column; you may need to standardize types before analysis"
+    },
+    "numeric_parse_ambiguity": {
+      "title": "Numeric Format Ambiguity",
+      "description": "Numbers use non-standard separators (commas, periods, spaces)",
+      "action": "Clarify whether commas represent thousands separators or decimal points"
+    },
+    "invalid_date_candidate": {
+      "title": "Invalid Date Format",
+      "description": "Cells cannot be parsed as dates",
+      "action": "Review date format; consider standardizing to ISO 8601 (YYYY-MM-DD)"
+    },
+    "date_order": {
+      "title": "Date Order Issue",
+      "description": "End date is earlier than start date",
+      "action": "Verify dates; this may be valid for retrospective studies"
+    },
+    "constant_column": {
+      "title": "Constant Column",
+      "description": "Column contains only one unique value",
+      "action": "Consider whether this column is necessary for analysis"
+    },
+    "high_cardinality_category": {
+      "title": "High Cardinality Category",
+      "description": "Text column has unusually many unique values (>50% unique)",
+      "action": "Verify this is not an ID or free-text field; review for standardization needs"
+    },
+    "outlier_iqr_flag": {
+      "title": "Potential Outliers (IQR)",
+      "description": "Numeric values flagged as outliers by IQR method (±1.5*IQR from quartiles)",
+      "action": "Review outliers; verify they are valid measurements, not data entry errors"
+    },
+    "possible_outcome_leakage": {
+      "title": "Possible Outcome Leakage",
+      "description": "Column name suggests it may contain outcome or result information",
+      "action": "Verify this column is not accidentally using information from the outcome variable"
+    }
+  },
+  "errors": {
+    "file_unsupported": "This file format is not supported. Please use CSV or XLSX.",
+    "file_too_large": "File exceeds 25 MB limit. Please choose a smaller file.",
+    "file_empty": "This file contains no data.",
+    "row_column_limit": "Data exceeds limits: 100,000 rows or 500 columns.",
+    "header_duplicate_error": "Duplicate column names found. Please rename them before continuing.",
+    "parse_error": "Unable to read this file. Please check that it's valid CSV or XLSX.",
+    "invalid_header_row": "Invalid header row index. Please choose a row that exists in your file.",
+    "unknown_error": "An unexpected error occurred. Please refresh and try again."
+  }
+}
