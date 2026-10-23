@@ -1,67 +1,54 @@
 # Clinical Dataset Checker
 
+**English** | [简体中文](README.zh-CN.md)
+
 [![GitHub License](https://img.shields.io/github/license/YSH2015Ryan/Clinical-Dataset-Checker)](LICENSE)
 [![GitHub Stars](https://img.shields.io/github/stars/YSH2015Ryan/Clinical-Dataset-Checker?style=social)](https://github.com/YSH2015Ryan/Clinical-Dataset-Checker)
 [![GitHub Issues](https://img.shields.io/github/issues/YSH2015Ryan/Clinical-Dataset-Checker)](https://github.com/YSH2015Ryan/Clinical-Dataset-Checker/issues)
-![Version](https://img.shields.io/badge/version-1.0.0-blue)
-![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 
 **A privacy-first, local data quality pre-check tool for clinical research datasets.**
 
-🔗 **[Try It Online →](https://YSH2015Ryan.github.io/Clinical-Dataset-Checker/)**
+**[Try It Online →](https://ysh2015ryan.github.io/Clinical-Dataset-Checker/)**
 
 ---
 
-## 🎯 Value Proposition
+## Value Proposition
 
 Before diving into statistical analysis, researchers often spend hours manually inspecting data for:
-- ❌ Missing values and inconsistent patterns
-- ❌ Duplicate records and IDs
-- ❌ Formatting issues (dates, numbers, categories)
-- ❌ Type mismatches and anomalies
 
-**Clinical Dataset Checker** automates this tedious process with **15 deterministic rules** that identify common data quality issues in seconds—all without uploading your data anywhere.
+- Missing values and inconsistent missing-data codes
+- Duplicate records and duplicate participant IDs
+- Formatting issues (dates, numbers, categories)
+- Mixed types and anomalous values
+
+**Clinical Dataset Checker** automates this tedious process with **15 deterministic rules** that identify common data quality issues in seconds — all without uploading your data anywhere.
 
 ### Key Benefits
 
-| Feature | Benefit |
-|---------|---------|
-| **Local Processing** | Your data never leaves your device—no server uploads |
-| **Privacy-First** | Zero tracking, no analytics, no accounts required |
-| **Fast Checks** | Analyze 100K rows in < 2 seconds |
-| **15 Rules** | Comprehensive coverage of common problems |
-| **Bilingual** | Full support for English and Simplified Chinese |
-| **Multiple Formats** | CSV and XLSX support with auto-detection |
-| **Export Reports** | HTML, JSON, and CSV formats |
+| Feature              | Benefit                                                  |
+| -------------------- | -------------------------------------------------------- |
+| **Local Processing** | Your data never leaves your device — no server uploads   |
+| **Privacy-First**    | Zero tracking, no analytics, no accounts required        |
+| **15 Rules**         | Comprehensive coverage of common structural problems     |
+| **Bilingual UI**     | Full support for English and Simplified Chinese          |
+| **Multiple Formats** | CSV and XLSX support with separator auto-detection       |
+| **Export Reports**   | HTML, JSON, and CSV formats                              |
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Option 1: Use Online (Recommended)
 
-Visit **[https://YSH2015Ryan.github.io/Clinical-Dataset-Checker/](https://YSH2015Ryan.github.io/Clinical-Dataset-Checker/)**
-
-1. Click "Check My File"
-2. Upload your CSV or XLSX file
-3. Review the quality check results
-4. Export a detailed report
-
-**No installation needed. No data uploaded to servers.**
+Visit **<https://ysh2015ryan.github.io/Clinical-Dataset-Checker/>** — no installation, no data uploaded.
 
 ### Option 2: Run Locally
 
 ```bash
-# Clone the repository
 git clone https://github.com/YSH2015Ryan/Clinical-Dataset-Checker.git
 cd Clinical-Dataset-Checker
-
-# Install dependencies
 npm install
-
-# Start development server
 npm run dev
-
 # Open http://localhost:5173 in your browser
 ```
 
@@ -69,530 +56,294 @@ npm run dev
 
 ```bash
 npm run build
-
-# Outputs to dist/ directory
-# Ready to deploy to GitHub Pages, Vercel, or any static hosting
+# Outputs to dist/ — deployable to any static hosting
 ```
 
 ---
 
-## 📊 What It Checks
+## How to Use (Step by Step)
 
-The tool analyzes your data against **15 quality rules**:
+The application guides you through five pages: **Home → Import → Preview → Results → Export**.
+
+### Step 1 — Home
+
+Two entry points:
+
+- **Try Sample Dataset** — loads the bundled `sample-clinical-data.csv`, which contains intentional issues (duplicates, missing values, repeated IDs). Recommended for a first tour.
+- **Check My File** — upload your own CSV or XLSX file.
+
+The language switch button in the header toggles between English and 简体中文 at any time.
+
+### Step 2 — Import & Configure
+
+Drag and drop your file (or click to select). Limits: **25 MB**, **100,000 rows**, **500 columns**.
+
+After parsing, configure how the file should be interpreted:
+
+| Option                                | What it does                                                                                                                            |
+| ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| **Worksheet** (XLSX only)             | Choose which worksheet to analyze.                                                                                                      |
+| **Separator** (CSV only)              | Field delimiter. Auto-detected by default (comma, semicolon, or tab); override if detection is wrong.                                   |
+| **Header Row**                        | Which row contains your column names (default: row 1). Increase if your file has metadata lines above the headers.                      |
+| **ID Column (optional)**              | The column that identifies participants. Enables the duplicate-ID check.                                                                |
+| **Study Design**                      | Check *"Is this longitudinal data?"* if one participant has multiple rows. This downgrades duplicate IDs from a blocker to a warning.   |
+| **Analysis Unit**                     | Free-text description of the unit of analysis (e.g., `per-participant`, `per-visit`). Recorded in the report for traceability.          |
+| **Missing Data Markers**              | Comma-separated codes treated as missing, in addition to empty cells. Default: `NA, N/A, NULL, unknown, -`. Matching is case-insensitive. |
+| **Date Columns**                      | Tick columns that should contain dates. Expected format is ISO `YYYY-MM-DD` (or `YYYY/MM/DD`); other values are flagged.                |
+| **Start / End Date Column (optional)**| If set, rows where end date precedes start date are flagged.                                                                            |
+
+Parsing warnings are shown here, e.g.:
+
+- **Formula warning** (XLSX): cells contained formulas — only cached values are read, and they may be stale. Re-save the file in Excel if values look wrong.
+- **CSV parser warnings**: malformed rows reported by the parser.
+
+Click **Preview Data** to continue.
+
+### Step 3 — Preview
+
+Verify before checking:
+
+- File name, size, total rows and columns
+- The first 20 rows rendered as a table
+- Any parsing warnings
+
+If something looks wrong (wrong separator, wrong header row), use **Back to Import** to adjust the configuration. Otherwise click **Start Quality Check**.
+
+### Step 4 — Review Results
+
+The results page shows:
+
+1. **Data Summary** — total rows, total columns, missing cells, total cells, missing rate.
+2. **Issue list grouped by severity:**
+   - **Blockers** (red) — the data cannot be reliably interpreted with the current configuration (e.g., duplicate column names). Fix these first.
+   - **Warnings** (yellow) — issues you should review (e.g., duplicate IDs, invalid dates).
+   - **Information** (blue) — facts worth knowing (e.g., missing-value counts, potential outliers).
+3. **Filter by severity** to focus on one level at a time.
+
+Click any issue card to expand it and see:
+
+- **Columns** affected
+- **Affected Rows** count
+- **Sample data rows** (1-based row numbers, so you can locate them in your source file)
+- **Suggested action** — concrete guidance on what to check or fix
+
+If blockers are present, a banner warns that they must be reviewed before exporting.
+
+### Step 5 — Export Report
+
+Three formats are available:
+
+| Format          | Contents                                                                     | Best for                            |
+| --------------- | ---------------------------------------------------------------------------- | ----------------------------------- |
+| **HTML Report** | Human-readable report with summary, severity sections, and issue details     | Sharing with collaborators, archiving |
+| **JSON Data**   | Machine-readable report (`schemaVersion` included); **no raw data rows**     | Pipeline integration, audit trails  |
+| **Issues (CSV)**| One row per issue detail, spreadsheet-compatible                             | Tracking fixes in Excel             |
+
+If blockers were found, you must tick **"I have reviewed the blocker issues and want to export anyway"** before downloading. The exported report is marked as containing unresolved blockers.
+
+Reports contain **check results only — never your raw dataset**.
+
+---
+
+## What It Checks
 
 ### Critical Issues (Blockers)
-- **Duplicate Column Names** - Prevents analysis if columns can't be uniquely identified
+
+- **Duplicate Column Names** — columns that can't be uniquely identified after normalization
 
 ### Important Warnings
-- **Empty Headers** - Missing column names
-- **Empty Rows/Columns** - Completely blank records
-- **Exact Duplicate Rows** - Identical records appearing multiple times
-- **Duplicate IDs** - Non-unique participant identifiers
-- **Mixed Data Types** - Single column containing multiple types
-- **Numeric Format Ambiguity** - Unclear decimal/thousand separators
-- **Invalid Dates** - Unparseable date values
-- **Date Order Issues** - End date before start date
-- **Possible Outcome Leakage** - Suspicious column names suggesting data leakage
+
+- **Empty Headers** — missing column names
+- **Empty Rows / Columns** — completely blank records or fields
+- **Exact Duplicate Rows** — identical records appearing multiple times
+- **Duplicate IDs** — non-unique participant identifiers (warning only, or blocker if not longitudinal)
+- **Mixed Data Types** — single column containing numbers, text, and/or dates
+- **Numeric Format Ambiguity** — unclear decimal/thousand separators (e.g., `1,234` vs `1.234`)
+- **Invalid Dates** — unparseable values in declared date columns
+- **Date Order Issues** — end date earlier than start date
+- **Possible Outcome Leakage** — column names suggesting outcome information
 
 ### Informational Items
-- **Missing Values** - Detailed count and percentage per column
-- **Constant Columns** - Columns with only one unique value
-- **High-Cardinality Categories** - Text columns with unusually many unique values
-- **Outlier Detection** - IQR-based detection of extreme values
+
+- **Missing Values** — count and percentage per column
+- **Constant Columns** — columns with only one unique value
+- **High-Cardinality Categories** — text columns with >50% unique values
+- **Outlier Detection** — IQR method (values beyond Q1 − 1.5×IQR or Q3 + 1.5×IQR, R Type 7 quantile definition)
+
+All rules are **deterministic**: the same file and configuration always produce the same result.
 
 ---
 
-## 💡 Usage Example
+## Privacy & Security
 
-### Workflow
+- **100% local processing** — all parsing and analysis happens in your browser's JavaScript engine
+- **Zero transmissions** — no `fetch`/XHR/WebSocket calls to external servers; no uploads
+- **No tracking** — no analytics, cookies, or accounts
+- **Data lifecycle**: load → analyze in memory → display → export to your device → discarded on page close
 
-```
-1. Import Data
-   └─ Upload CSV/XLSX (max 25 MB, 100K rows, 500 cols)
-
-2. Configure
-   ├─ Specify header row
-   ├─ Select ID column (optional)
-   ├─ Define missing markers (NA, N/A, etc.)
-   └─ Declare study design (one-per-participant or longitudinal)
-
-3. Preview
-   └─ Review first 20 rows and metadata
-
-4. Run Quality Check
-   └─ Execute 15 deterministic rules
-
-5. Review Results
-   ├─ Blockers (must fix)
-   ├─ Warnings (should check)
-   └─ Info (for reference)
-
-6. Export
-   ├─ HTML report (browser-viewable)
-   ├─ JSON data (machine-readable)
-   └─ CSV issues (spreadsheet-compatible)
-```
-
-### Sample Data
-
-A test dataset (`public/sample-clinical-data.csv`) is included with intentional issues:
-- Duplicate records
-- Missing values
-- Repeated IDs
-- Anomalous values
-
-Use it to explore the tool's capabilities.
+**Verify it yourself:** open Developer Tools (F12) → Network tab, import a file, and confirm no external requests are made.
 
 ---
 
-## 🛡️ Privacy & Security
+## Supported Formats
 
-### Data Handling
+| Format | Details                                                                                  |
+| ------ | ---------------------------------------------------------------------------------------- |
+| CSV    | Comma / semicolon / tab delimiters, auto-detected; UTF-8 with BOM support                |
+| XLSX   | Worksheet selection; configurable header row; formula cells read as cached values        |
 
-✅ **100% Local Processing**
-- All CSV/XLSX parsing happens in your browser's JavaScript engine
-- Data never leaves your device
-
-✅ **Zero Transmissions**
-- No `fetch()`, `XHR`, or `WebSocket` calls to external servers
-- No file uploads, no API calls
-
-✅ **No Tracking**
-- No Google Analytics, Sentry, or similar tracking tools
-- No user accounts or login systems
-- No cookies for user identification
-
-✅ **Verification**
-- Open your browser's Developer Tools (F12)
-- Check the **Network** tab while using the tool
-- Confirm no external requests are made
-
-### Data Lifecycle
-
-1. **Load**: File loaded into browser memory from your device
-2. **Process**: All analysis happens in memory using JavaScript algorithms
-3. **Display**: Results shown in the browser
-4. **Export**: Report files download directly to your device
-5. **Clear**: Data is discarded when you close the page (or refresh)
-
-**Your data is never stored, transmitted, or retained.**
+**Not supported:** XLS, SAV, DTA, Parquet, databases. Limits: 25 MB / 100,000 rows / 500 columns.
 
 ---
 
-## 📋 Supported Formats
+## What This Tool Does NOT Do
 
-### CSV Files
-- **Delimiters**: Comma (`,`), Semicolon (`;`), Tab (`\t`)
-- **Auto-Detection**: Automatically detects the separator
-- **Encoding**: UTF-8 (with BOM support)
+- **No medical interpretation** — does not assess clinical significance
+- **No automatic repair** — never modifies your data
+- **No statistical advice** — does not recommend analysis methods
+- **No compliance verification** — does not certify HIPAA/GDPR/21 CFR Part 11 compliance
+- **Not for regulatory submissions** — not validated software for FDA/EMA filings
 
-### XLSX Files
-- **Sheets**: Single worksheet supported
-- **Headers**: Configurable header row
-- **Formulas**: Reads cached values only (formulas not re-calculated)
-
-### Limitations
-- Maximum file size: **25 MB**
-- Maximum rows: **100,000**
-- Maximum columns: **500**
-- Formats not supported: XLS, SAV, DTA, Parquet, SQL databases
+Use this as a **first-pass quality check** before formal analysis, combined with your domain expertise and data management policies.
 
 ---
 
-## 🔧 Development
+## Troubleshooting
+
+| Error message                                                        | Cause & fix                                                                                  |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| "This file format is not supported"                                  | Only `.csv` and `.xlsx` are accepted. Convert other formats first.                            |
+| "File exceeds 25 MB limit"                                           | Split the file or remove unneeded columns.                                                    |
+| "This file contains no data"                                         | The file is empty or all rows were consumed by the header row setting.                        |
+| "Data exceeds limits: 100,000 rows or 500 columns"                   | Subset the data before checking.                                                              |
+| "Duplicate column names found"                                       | Rename duplicate headers in the source file, then re-import.                                  |
+| "Unable to read this file"                                           | Corrupted or mis-encoded file. Re-export as UTF-8 CSV or re-save in Excel.                    |
+| "Invalid header row index"                                           | The header row number is larger than the file's row count.                                    |
+| Formula warning (XLSX)                                               | Formulas are not recalculated; open the file in Excel, re-save, and re-import.                |
+| Everything parsed into one column (CSV)                              | Wrong separator — go back and select the correct one manually.                                |
+
+---
+
+## Development
 
 ### Prerequisites
 
-- Node.js 18+ 
-- npm 9+ or yarn
-
-### Setup
-
-```bash
-git clone https://github.com/YSH2015Ryan/Clinical-Dataset-Checker.git
-cd Clinical-Dataset-Checker
-npm install
-```
+- Node.js 18+
+- npm 9+
 
 ### Available Scripts
 
 ```bash
-npm run dev              # Start Vite dev server (http://localhost:5173)
-npm run build            # Build for production (output: dist/)
-npm run preview          # Preview production build locally
-npm run test             # Run unit tests with Vitest
-npm run test:ui          # View test results in browser UI
-npm run e2e              # Run end-to-end tests with Playwright
-npm run lint             # Check code quality with ESLint
-npm run format           # Auto-format code with Prettier
+npm run dev        # Vite dev server (http://localhost:5173)
+npm run build      # Production build → dist/
+npm run preview    # Preview production build
+npm run test       # Unit tests (Vitest, 120+ cases)
+npm run e2e        # End-to-end tests (Playwright, Chromium + Firefox)
+npm run lint       # ESLint
+npm run format     # Prettier
 ```
 
 ### Tech Stack
 
-```
-Frontend:     React 18 + TypeScript (strict mode)
-Build Tool:   Vite 5
-Data Parsing: PapaParse (CSV) + SheetJS (XLSX)
-i18n:         i18next + react-i18next
-Testing:      Vitest + Playwright
-Code Quality: ESLint + Prettier
-Deployment:   GitHub Pages + GitHub Actions
-```
+React 18 · TypeScript (strict) · Vite 5 · PapaParse · SheetJS · i18next · Vitest · Playwright
 
 ### Project Structure
 
 ```
 src/
 ├── lib/
-│   ├── rules/           # 15 data quality check rules
-│   └── parsers/         # CSV/XLSX parsing logic
-├── components/          # React components
-├── i18n/                # English + Simplified Chinese translations
-├── types/               # TypeScript type definitions
-├── App.tsx              # Main application component
-├── main.tsx             # React entry point
-└── *.css                # Styles
+│   ├── rules/        # 15 deterministic quality rules
+│   ├── parsers/      # CSV/XLSX parsing
+│   └── export/       # HTML/JSON/CSV report builders
+├── components/       # React pages (Home, Import, Preview, Results, Export, ...)
+├── i18n/             # en.json + zh-CN.json
+└── types/            # TypeScript definitions
 
 tests/
-├── unit/                # Unit tests for rules engine
-└── fixtures/            # Test data files
+├── unit/             # Vitest unit tests (rules, parsers, export)
+├── e2e/              # Playwright end-to-end tests
+└── fixtures/         # Test datasets (clean, missing codes, bad headers, ...)
 
-public/
-└── sample-clinical-data.csv    # Example dataset
-
-docs/
-├── privacy-and-limitations.md  # Privacy policy
-└── failure-catalog.md          # Error handling reference
-
-.github/
-└── workflows/           # CI/CD pipelines (test + deploy)
+docs/                 # Privacy policy, failure catalog
+.github/workflows/    # CI (test) + CD (deploy to GitHub Pages)
 ```
 
 ---
 
-## 📖 Documentation
+## Deployment (GitHub Pages)
 
-| Document | Purpose |
-|----------|---------|
-| [Privacy & Limitations](docs/privacy-and-limitations.md) | Data handling policy, tool scope |
-| [Failure Catalog](docs/failure-catalog.md) | Error messages and troubleshooting |
-| [Development Plan](01_clinical_dataset_checker_plan.md) | Complete v1.0 specification (Chinese) |
-| [Quick Reference](QUICK_REFERENCE.md) | One-page cheat sheet (Chinese) |
+The `deploy` workflow uses [peaceiris/actions-gh-pages](https://github.com/peaceiris/actions-gh-pages), which publishes `dist/` to the **`gh-pages` branch**. Therefore:
+
+1. Push to `main` — the workflow builds and pushes the `gh-pages` branch automatically.
+2. Go to **Settings → Pages → Source: "Deploy from a branch" → Branch: `gh-pages`** (root). Save.
+3. The site appears at `https://<username>.github.io/<repo>/` within a minute or two.
+
+> Do **not** select "GitHub Actions" as the Pages source — that mode expects a different deployment flow and the `gh-pages` branch will not be served.
 
 ---
 
-## 🧪 Testing
-
-### Unit Tests
+## Testing
 
 ```bash
-npm run test
-```
-
-Includes 50+ test cases covering:
-- All 15 quality rules
-- Edge cases and boundary conditions
-- Data accuracy and consistency
-- Reproducibility verification
-
-### Manual Testing
-
-1. **Local Development**
-   ```bash
-   npm run dev
-   # Load public/sample-clinical-data.csv
-   # Verify results match expected issues
-   ```
-
-2. **Privacy Verification**
-   ```
-   1. Open http://localhost:5173
-   2. Press F12 → Network tab
-   3. Import a data file
-   4. Confirm: NO requests to external servers
-   ```
-
-3. **Cross-Browser**
-   - ✅ Chrome/Chromium
-   - ✅ Firefox
-   - ✅ Safari
-   - ✅ Edge
-
----
-
-## 🌐 Deployment
-
-### GitHub Pages (Recommended)
-
-1. **Enable GitHub Pages**
-   - Go to Settings → Pages
-   - Source: "GitHub Actions"
-   - Save
-
-2. **Automatic Deployment**
-   - Push to `main` branch
-   - GitHub Actions runs tests and builds
-   - Automatically deploys to GitHub Pages
-
-3. **Access Your App**
-   ```
-   https://YSH2015Ryan.github.io/Clinical-Dataset-Checker/
-   ```
-
-### Alternative Hosting
-
-The `dist/` folder after running `npm run build` can be deployed to:
-- Vercel
-- Netlify
-- AWS S3 + CloudFront
-- Any static file hosting service
-
----
-
-## ⚠️ What This Tool Does NOT Do
-
-### Out of Scope
-
-- ❌ **Medical Diagnosis** - Does not interpret clinical significance
-- ❌ **Automatic Repair** - Never modifies your data
-- ❌ **Statistical Methods** - Does not recommend analysis approaches
-- ❌ **Regulatory Compliance** - Does not verify standards (HIPAA, GDPR, etc.)
-- ❌ **Replace Governance** - Not a substitute for data management policies
-
-### Important Limitations
-
-This tool checks **data structure and quality only**. It:
-- Identifies formatting inconsistencies
-- Flags potential data issues
-- Provides remediation suggestions
-- Does NOT validate medical accuracy
-- Does NOT ensure suitability for publication
-
-**Use this as a first-pass quality check, not a final compliance tool.**
-
----
-
-## 🤝 Contributing
-
-We welcome contributions! Please:
-
-1. **Report Issues**
-   - Describe steps to reproduce
-   - Include expected vs. actual behavior
-   - Mention your file format and data size
-
-2. **Suggest Features**
-   - Open a Discussion for feature requests
-   - Describe the use case
-
-3. **Submit Pull Requests**
-   - Fork the repository
-   - Create a feature branch
-   - Submit a PR with clear description
-
-### Development Guidelines
-
-- TypeScript strict mode (no `any` types)
-- All new rules must have unit tests (5+ test cases)
-- Keep rules deterministic (same input → same output)
-- Do not add external API dependencies
-- Update i18n files for user-facing text
-
----
-
-## 📝 License
-
-MIT License - See [LICENSE](LICENSE) file for details
-
-This means you can use, modify, and distribute this tool freely, as long as you include the license notice.
-
----
-
-## ❓ FAQ
-
-### Q: Will my data be safe if I use this?
-**A:** Yes. All processing is local to your browser. No data leaves your device. You can verify this using your browser's Developer Tools (F12 → Network tab).
-
-### Q: Can I use this for large datasets?
-**A:** The tool supports up to 100,000 rows and 500 columns. For larger datasets, consider using R, Python, or SQL-based data quality tools.
-
-### Q: Does it support other languages?
-**A:** Currently: English (US) and Simplified Chinese. Other languages can be added by contributing translations.
-
-### Q: Can I use this in production workflows?
-**A:** Yes, but as a **pre-check tool only**. Use it to identify issues before formal statistical analysis, not as your primary data validation system.
-
-### Q: How fast is it?
-**A:** 
-- Import & parse: ~1-3 seconds
-- Run checks (100K rows): ~1-2 seconds
-- Export report: <1 second
-
-### Q: Can I customize the rules?
-**A:** Currently, no. v1.0 has fixed rules. Feature request? Open an Issue!
-
-### Q: Is there an offline version?
-**A:** You can download the repo and run `npm run dev` locally, or build with `npm run build` and open `dist/index.html` in your browser.
-
-### Q: Can I integrate this into my application?
-**A:** The core rule engine (`src/lib/rules/`) can be extracted and used as a library. The UI is React-based and could be refactored for integration.
-
----
-
-## 🔗 Resources
-
-- **Live App**: https://YSH2015Ryan.github.io/Clinical-Dataset-Checker/
-- **GitHub Repo**: https://github.com/YSH2015Ryan/Clinical-Dataset-Checker
-- **Issues & Bugs**: https://github.com/YSH2015Ryan/Clinical-Dataset-Checker/issues
-- **Discussions**: https://github.com/YSH2015Ryan/Clinical-Dataset-Checker/discussions
-
----
-
-## 📧 Feedback
-
-Have questions or suggestions? 
-
-- 📝 **Report a Bug**: [GitHub Issues](https://github.com/YSH2015Ryan/Clinical-Dataset-Checker/issues)
-- 💬 **Start a Discussion**: [GitHub Discussions](https://github.com/YSH2015Ryan/Clinical-Dataset-Checker/discussions)
-- 🎯 **Request a Feature**: Open an Issue with label `enhancement`
-
----
-
-## 🙏 Acknowledgments
-
-This tool was built for the clinical research community to make data preparation faster, easier, and more transparent.
-
-**Special thanks to:**
-- Clinical researchers who provided requirements and feedback
-- Open source community for excellent libraries (React, Vite, PapaParse, SheetJS)
-- All contributors and issue reporters
-
----
-
-## 📊 Project Statistics
-
-| Metric | Value |
-|--------|-------|
-| Source Code Lines | 2000+ |
-| Test Cases | 50+ |
-| i18n Strings | 1000+ |
-| Quality Rules | 15 |
-| Supported Formats | 2 (CSV, XLSX) |
-| Supported Languages | 2 (EN, ZH) |
-| Bundle Size | ~200 KB (gzipped) |
-| Build Time | ~5 seconds |
-
----
-
-## 📅 Changelog
-
-### v1.0.0 (October 22, 2026)
-- ✨ Initial release
-- 📊 15 deterministic quality check rules
-- 🌍 Bilingual UI (English + Simplified Chinese)
-- 📄 CSV and XLSX support
-- 📋 HTML/JSON/CSV export
-- ✅ Comprehensive test suite
-- 🔒 Privacy-first architecture
-- 📚 Full documentation
-
----
-
-## 🎓 For Researchers
-
-### Tips for Best Results
-
-1. **Format Data First**
-   - Ensure headers are in the first row
-   - Use consistent date formats (ISO 8601 recommended)
-   - Standardize missing value codes
-
-2. **Review Results Carefully**
-   - Not all warnings require action
-   - Consider your research design
-   - Use domain knowledge to interpret findings
-
-3. **Document Decisions**
-   - Note which issues you addressed
-   - Export reports for your records
-   - Include quality checks in your methods
-
-4. **Iterate**
-   - Fix issues
-   - Re-run the check
-   - Export final report for documentation
-
-### Research Best Practices
-
-- Use this tool **before** statistical analysis
-- Combine with domain expertise
-- Document all data quality decisions
-- Include data quality assessment in your methods section
-- Share tools with your team for consistency
-
----
-
-## 🏥 Clinical Research Context
-
-This tool is designed for researchers in:
-- Clinical trials and observational studies
-- Laboratory and diagnostic medicine
-- Public health epidemiology
-- Medical device testing
-- Biomarker discovery
-- Registry management
-
-### Limitations for Regulatory Use
-
-⚠️ **This tool is NOT suitable for:**
-- FDA submissions (requires qualified software validation)
-- Clinical trial regulatory documentation
-- HIPAA compliance verification
-- Electronic health record (EHR) validation
-
-For regulatory applications, consult specialized data management software with appropriate validation and audit trails.
-
----
-
-## 📜 Citation
-
-If you use Clinical Dataset Checker in your research, please cite:
-
-```bibtex
-@software{clinical_dataset_checker_2026,
-  title = {Clinical Dataset Checker: A Privacy-First Data Quality Tool},
-  author = {Your Research Team},
-  year = {2026},
-  url = {https://github.com/YSH2015Ryan/Clinical-Dataset-Checker},
-  note = {v1.0.0}
-}
+npm run test   # 120+ unit tests: rule oracles, Type-7 quantile checks, parser edge cases,
+               # export safety (no raw data, XSS escaping), determinism
+npm run e2e    # 5 end-to-end flows: sample→check→export, i18n switch,
+               # static pages, "no external requests" privacy assertion
 ```
 
 ---
 
-## 📞 Support
+## FAQ
 
-- 📖 Check the [docs/](docs/) folder for detailed documentation
-- 🐛 Found a bug? Open an [Issue](https://github.com/YSH2015Ryan/Clinical-Dataset-Checker/issues)
-- 💡 Have a question? Start a [Discussion](https://github.com/YSH2015Ryan/Clinical-Dataset-Checker/discussions)
-- 🤝 Want to contribute? Read [CONTRIBUTING.md](CONTRIBUTING.md)
+**Q: Will my data be safe?**
+Yes — all processing is local. Verify via DevTools → Network: zero external requests.
+
+**Q: Can I use this for large datasets?**
+Up to 100,000 rows × 500 columns. For larger data, use R/Python/SQL tooling.
+
+**Q: Which languages are supported?**
+English and Simplified Chinese. Contributions of other translations are welcome.
+
+**Q: Can I customize the rules?**
+Not in v1.0 — rules are fixed. Feature requests: open an Issue.
+
+**Q: Can I use it offline?**
+Yes — clone the repo, `npm install && npm run dev`, or serve the built `dist/` folder locally.
+
+**Q: Does it work for regulatory submissions?**
+No. It is a pre-check aid, not validated software for FDA/EMA submissions.
 
 ---
 
-## ⭐ Show Your Support
+## Documentation
 
-If this tool is helpful, please consider:
-- ⭐ **Star this repository** (top right)
-- 📢 **Share with colleagues** and communities
-- 🐛 **Report issues** to help us improve
-- 🤝 **Contribute improvements** via pull requests
-
----
-
-**Made with ❤️ for the clinical research community**
+| Document                                                       | Purpose                                   |
+| -------------------------------------------------------------- | ----------------------------------------- |
+| [docs/privacy-and-limitations.md](docs/privacy-and-limitations.md) | Data handling policy, tool scope       |
+| [docs/failure-catalog.md](docs/failure-catalog.md)             | Error messages and troubleshooting        |
+| [01_clinical_dataset_checker_plan.md](01_clinical_dataset_checker_plan.md) | v1.0 specification (Chinese) |
 
 ---
 
-*Last Updated: October 22, 2026*
-*Version: 1.0.0*
-*License: MIT*
+## Contributing
+
+Contributions welcome — bug reports, feature requests, translations, and pull requests. Guidelines:
+
+- TypeScript strict mode, no `any`
+- New rules require unit tests and must be deterministic
+- No external API dependencies (privacy requirement)
+- Update both `en.json` and `zh-CN.json` for user-facing text
+
+---
+
+## License
+
+MIT — see [LICENSE](LICENSE).
+
+---
+
+## Resources
+
+- **Live App**: <https://ysh2015ryan.github.io/Clinical-Dataset-Checker/>
+- **Issues**: <https://github.com/YSH2015Ryan/Clinical-Dataset-Checker/issues>
+- **Discussions**: <https://github.com/YSH2015Ryan/Clinical-Dataset-Checker/discussions>
