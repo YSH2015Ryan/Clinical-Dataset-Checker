@@ -67,6 +67,8 @@ git push -u origin main
 
 ## 后续步骤
 
-1. 启用GitHub Pages部署（Settings > Pages > Source: GitHub Actions）
+1. 启用GitHub Pages部署：Settings > Pages > Source 选 "Deploy from a branch"，Branch 选 `gh-pages` / (root)
+   - 说明：deploy.yml 使用 peaceiris/actions-gh-pages，会把构建产物发布到 gh-pages 分支，因此 Pages 源必须是该分支，而不是 "GitHub Actions"
+   - 首次推送后需等 deploy workflow 跑完一次，gh-pages 分支才会出现
 2. 验证workflow是否成功运行
 3. 访问部署的应用：https://YSH2015Ryan.github.io/Clinical-Dataset-Checker/
